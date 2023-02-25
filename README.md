@@ -1,2 +1,3 @@
 # Audio-Visualiser
-music visualiser project object oriented programming 2023
+music visualiser project for Object Oriented Programming 2023
+
