@@ -1,5 +1,5 @@
 # Audio-Visualiser
-music visualiser project for Object Oriented Programming 2023.
+Music visualiser project for Object Oriented Programming 2023.
 
 ## Collaborators
 The collaborators for this project are;
