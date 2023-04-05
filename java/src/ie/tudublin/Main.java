@@ -9,6 +9,12 @@ public class Main
         processing.core.PApplet.runSketch(a, new HelloProcessing());
     }
 
+	public static void audioVisualiser()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch(a, new AudioVisualiser());
+    }
+
 	public static void loops()
 	{
 		String[] a = {"MAIN"};
@@ -50,6 +56,13 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Life());
     }
+
+	public static void tree()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new tree());
+    }
+
 	
 	public static void main(String[] args)
 	{
@@ -59,7 +72,7 @@ public class Main
 		penny.setName("Penny");
 		penny.speak();
 
-		life();
+		tree();
 	}
 	
 	

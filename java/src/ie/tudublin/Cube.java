@@ -3,7 +3,7 @@ package ie.tudublin;
 import processing.core.PApplet;
 
 public class Cube {
-    public float x, y;
+    public float x, y, z;
     public float size;
     public float c;
     public float rot;
@@ -15,7 +15,7 @@ public class Cube {
 
         p.noFill();
         p.pushMatrix();
-        p.translate(x, y);
+        p.translate(x, y, z);
         
         p.rotateY(rot);
         p.rotateX(rot);
