@@ -1,74 +1,64 @@
 package ie.tudublin;
-import processing.core.PApplet;
 
-import ddf.minim.AudioBuffer;
+import processing.core.PApplet;
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
-import ddf.minim.analysis.FFT;
-import processing.core.PApplet;
 
 public class tree extends PApplet {
 
-	Minim minim;
+    Minim minim;
     AudioInput ai;
     AudioPlayer ap;
     AudioBuffer ab;
+    float branchAngle = 0;
+    float branchAngleTarget = 0;
+    float branchAngleChangeRate = 0.75f; // Adjust this value for wider or narrower angles
+    int maxDepth = 7;
 
+    public void settings() {
+        size(500, 500);
+    }
 
-    public void settings()
-	{
-		size(500, 500);
-	}
-
-	public void setup() {
-		minim = new Minim(this);
-		ap = minim.loadFile("Mio mao.mp3", 1024);
+    public void setup() {
+        minim = new Minim(this);
+        ap = minim.loadFile("Mio mao.mp3", 1024);
         ap.play();
         ab = ap.mix;
-		colorMode(HSB);	
-	}
+        colorMode(HSB);
+    }
 
-	public void branch(float len)
-	{
-		float angle = PI/4;
-		//float len = 100;
-		line(0, 0, 0, - len);
-		translate(0, -len);
-		
-		if(len > 4)
-		{
-			pushMatrix();
-			rotate(angle);
-			branch(len*0.75f);
-			popMatrix();
+    public void branch(float len, int depth, float hue, float thickness) {
+        branchAngle = lerp(branchAngle, branchAngleTarget, branchAngleChangeRate);
+        float saturation = map(depth, 0, maxDepth, 255, 100);
+        float brightness = map(depth, 0, maxDepth, 255, 200);
+        stroke(hue, saturation, brightness);
+        strokeWeight(thickness); // Set stroke weight based on thickness
+        line(0, 0, 0, -len);
+        translate(0, -len);
 
-			pushMatrix();
-			rotate(-angle);
-			branch(len*0.75f);
-			popMatrix();
-		}
+        if (depth < maxDepth) {
+            pushMatrix();
+            rotate(branchAngle);
+            branch(len * 0.75f, depth + 1, hue + 10, thickness * 0.7f); // Decrease thickness for thinner branches
+            popMatrix();
 
-	}
-
-	float lerpedBuffer[] = new float[1024];
+            pushMatrix();
+            rotate(-branchAngle);
+            branch(len * 0.75f, depth + 1, hue + 10, thickness * 0.7f); // Decrease thickness for thinner branches
+            popMatrix();
+        }
+    }
 
     public void draw() {
-		background(0);
-		float halfH = height / 2;
-		float c = map(0, 0, ab.size(), 0, 255);
+        background(155, 206, 200);
+        float c = map(0, 0, ab.size(), 0, 255);
         stroke(c, 255, 255);
-		translate(250, height);
-		
+        translate(250, height);
 
-		for(int i = 0 ; i < ab.size() ; i ++)
-        {
-            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
-			float f = lerpedBuffer[i] * halfH * 4.0f;
-			branch(f);
-        }
-		
-		
+        float audioValue = ab.get(0);
+        branchAngleTarget = map(audioValue, 0, 1, -PI / 12, PI / 12); // Update minimum angle to -PI/12 and PI/12
+        branch(100, 0, 25, 20); // Initial hue for brown color, initial thickness of 20
     }
 }
