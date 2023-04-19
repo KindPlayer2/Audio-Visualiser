@@ -21,12 +21,18 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Audio3());
     }
+
+	public static void flower()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Flower());
+    }
 	
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
 		
-		audio1();
+		flower();
 	}
 	
 	
