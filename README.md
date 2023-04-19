@@ -9,4 +9,4 @@ Grace MacDonnell - https://github.com/macdonnellgrace ,
 Seán Tighe - https://github.com/KindPlayer2 ,
 
 ## Our Song
-The song we are using for our prject is Nocturne Op. 9 No 2. By Frédéric Chopin.
+The song we are using for our prject is Strawberry Fields by The Beatles
