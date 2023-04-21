@@ -6,7 +6,7 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import processing.core.PApplet;
 
-public class flower extends PApplet
+public class vines extends PApplet
 {
     Minim minim;
     AudioPlayer ap;

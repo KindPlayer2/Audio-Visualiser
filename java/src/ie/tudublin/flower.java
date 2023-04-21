@@ -18,20 +18,6 @@ public class flower extends PApplet {
     float smoothedY = 0;
     float smoothedAmplitude = 0;
 
-    public void keyPressed() {
-        if (key >= '0' && key <= '9') {
-            mode = key - '0';
-        }
-        if (keyCode == ' ') {
-            if (ap.isPlaying()) {
-                ap.pause();
-            } else {
-                ap.rewind();
-                ap.play();
-            }
-        }
-    }
-
     public void settings() {
         size(1024, 1000, P3D);
     }
@@ -48,8 +34,7 @@ public class flower extends PApplet {
     }
 
     public void sinFlower(float h, float w, float e, float c) {
-
-        smoothedY = lerp(smoothedY, y, 0.1f);
+    
         fill(c, 255, 200);
 
         circle(h + 50, w + 10, 75); // works
@@ -67,7 +52,6 @@ public class flower extends PApplet {
 
     }
 
-    float off = 0;
     float lerpedBuffer[] = new float[1024];
 
     public void draw() {
@@ -75,7 +59,6 @@ public class flower extends PApplet {
         float halfH = height / 2;
         float average = 0;
         float sum = 0;
-        off += 1;
 
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
@@ -89,16 +72,9 @@ public class flower extends PApplet {
 
         background(0);
         for (int i = 0; i < ab.size(); i++) {
-            /*
-             * float c = map(i, 0, ab.size(), mouseX /2, mouseY/ 2);
-             * stroke(c, 255, 255);
-             * float f = lerpedBuffer[i] * halfH * 4.0f;
-             * line(0, i, f, i);
-             * line(width, i, width - f, i);
-             * line(i, 0, i, f);
-             * line(i, height, i, height - f);
-             */
-            float c = map(ab.get(i), -1, 1, 0, 255);
+
+            //float c = map(ab.get(i), -1, 1, 0, 255);
+            float c = map(i, 0, ab.size(), 0, 255);
             float f = lerpedBuffer[i] * halfH * 4.0f;
 
             sinFlower(halfH, width / 2, f, c);
@@ -109,3 +85,14 @@ public class flower extends PApplet {
     }
 
 }
+
+
+            /*
+             * float c = map(i, 0, ab.size(), mouseX /2, mouseY/ 2);
+             * stroke(c, 255, 255);
+             * float f = lerpedBuffer[i] * halfH * 4.0f;
+             * line(0, i, f, i);
+             * line(width, i, width - f, i);
+             * line(i, 0, i, f);
+             * line(i, height, i, height - f);
+             */
