@@ -21,13 +21,20 @@ public class Main
         processing.core.PApplet.runSketch( a, new flower());
     }
 
+	public static void vines()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new vines());
+    }
+
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
 
     	//Tree();
 		//strawberry();
-		Flower();
+		//Flower();
+		vines();
 	}
 	
 	
