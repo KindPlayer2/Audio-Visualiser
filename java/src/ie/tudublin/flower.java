@@ -73,7 +73,7 @@ public class flower extends PApplet {
         }
 
 
-
+        int counter = 0;
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for (int i = 0; i < ab.size(); i++) {
@@ -96,12 +96,16 @@ public class flower extends PApplet {
 
             sinFlower(halfH, width / 2, f, c); // middle flower
 
-            if (freq > 8000)
+            
+            if (freq > 8000 && counter < 5)
             {
-                float pos = halfH + random(0,500);
-                float pos2 = (width / 2) + random(0,500);
+                float pos = halfH + random(-500,500);
+                float pos2 = (width / 2) + random(-500,500);
                 sinFlower(pos, pos2, f, c);
+                counter++;
+                
             }
+            
             
 
 
