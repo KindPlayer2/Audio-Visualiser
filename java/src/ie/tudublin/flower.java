@@ -72,8 +72,9 @@ public class flower extends PApplet {
             }
         }
 
-
+        // used to stop too many flowers spawning
         int counter = 0;
+
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for (int i = 0; i < ab.size(); i++) {
@@ -99,28 +100,18 @@ public class flower extends PApplet {
             
             if (freq > 8000 && counter < 5)
             {
+                // calls flowers in random pos.
                 float pos = halfH + random(-500,500);
                 float pos2 = (width / 2) + random(-500,500);
+                
                 sinFlower(pos, pos2, f, c);
+
+                // increments flower counter
                 counter++;
                 
             }
             
-            
-
-
         }
     }
 
 }
-
-
-            /*
-             * float c = map(i, 0, ab.size(), mouseX /2, mouseY/ 2);
-             * stroke(c, 255, 255);
-             * float f = lerpedBuffer[i] * halfH * 4.0f;
-             * line(0, i, f, i);
-             * line(width, i, width - f, i);
-             * line(i, 0, i, f);
-             * line(i, height, i, height - f);
-             */
