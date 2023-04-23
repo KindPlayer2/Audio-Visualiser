@@ -82,12 +82,11 @@ public class flower extends PApplet {
             lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
 
             average = sum / (float) ab.size();
-            smoothedAmplitude = lerp(smoothedAmplitude, average, 0.1f);
+            smoothedAmplitude = lerp(smoothedAmplitude, average, 0.5f);
 
             //float freq = fft.indexToFreq((int)(smoothedAmplitude * 100000.0f));
-            float freq = (int)(average * 100000.0f);
-            fill(255);
-            textSize(20);
+            float freq = (int)(smoothedAmplitude * 100000.0f);
+
             System.out.println(freq);
 
             //float c = map(smoothedAmplitude, -1, 1, 0, 255);
@@ -95,9 +94,16 @@ public class flower extends PApplet {
             float c = map(i, 0, freq, 0, 255);
             float f = lerpedBuffer[i] * halfH * 4.0f;
 
-            sinFlower(halfH, width / 2, f, c);
-            sinFlower(halfH + 200, (width / 2) + 200, f, c);
-            sinFlower(halfH - 250, (width / 2) - 250, f, c);
+            sinFlower(halfH, width / 2, f, c); // middle flower
+
+            if (freq > 8000)
+            {
+                float pos = halfH + random(0,500);
+                float pos2 = (width / 2) + random(0,500);
+                sinFlower(pos, pos2, f, c);
+            }
+            
+
 
         }
     }
