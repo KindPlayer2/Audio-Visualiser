@@ -20,9 +20,11 @@ public class vines extends PApplet
     float y = 0;
     float smoothedY = 0;
     float smoothedAmplitude = 0;
+    float halfH = height / 2;
+    float halfW = width/2;
 
     public void settings() {
-        size(1024, 1000, P3D);
+        size(1024, 1000);
     }
 
     public void setup() {
@@ -33,25 +35,67 @@ public class vines extends PApplet
         colorMode(HSB);
 
         y = height / 2;
-        smoothedY = y;
+        
 
         fft = new FFT(width, 1024);
     }
 
-    public void vine(float h, float w, float e, float c) 
+    public void vine(float x, float y) 
     {
+        strokeWeight(20);
+        stroke(80, 190, 150);
+
+        float x1, x2,x3;
+        float y1,y2,y3;
+
+        x1 = 100;
+        x2 = 200;
+        x3 = 300;
+        y1 = 300;
+        y2 = 100;
+        y3 = 200;
+
+
+        noFill();
+        beginShape();
+        curveVertex(0, 200); // the first control point
+        curveVertex(0, 200); // is also the start point of curve
+
+        curveVertex(x1, y1); 
+        curveVertex(x2, y2);
+        curveVertex(x3, y3);
+
+        for(int i = 0 ;i < 10 ; i ++)
+        {
+            curveVertex(x1+x, y1+y); 
+            curveVertex(x2+x, y2+y);
+            curveVertex(x3+x, y3+y);
+
+            if (y1 > 200 ||y2 > 200||y3 > 200)
+            {
+                curveVertex(x1+x, y1-y); 
+                curveVertex(x2+x, y2-y);
+                curveVertex(x3+x, y3-y);
+
+            }
+        }
+
+
+        //curveVertex(400+x, 200+y);
+        
+
+        endShape();
 
 
     }
 
     float off = 0;
     float lerpedBuffer[] = new float[1024];
-    float totalX = 400;
-    float totalY = 500;
+    float totalX = 100;
+    float totalY = 100;
 
     public void draw()
     {
-        float halfH = height / 2;
         float average = 0;
         float sum = 0;
         int highestIndex = 0;
@@ -80,33 +124,26 @@ public class vines extends PApplet
         float freq = fft.indexToFreq((int)(smoothedAmplitude * 100000.0f));
         System.out.println(freq);
         
-        strokeWeight(100);
-        background(0,0,50);
+
         freq = freq / 100;
         System.out.println(freq);
 
-        if (freq > 110)
+        background(0,0,50);
+
+        if (freq > 50)
         {
             totalX++;
             totalY++;
         }
 
-        if (freq < 60 && totalX>400 && totalY>500)
+        if (freq < 20 && totalX>400 && totalY>500)
         {
             totalX--;
             totalY--;
         }
 
-
-
-
-            
-
-        line(200,300,totalX,totalY); 
+        vine(totalX,totalY); 
         
         }
-       
-
-
     }        
 
