@@ -94,17 +94,27 @@ public class flower extends PApplet {
             
             float c = map(i, 0, freq, 0, 255);
             float f = lerpedBuffer[i] * halfH * 4.0f;
+            float pos = halfH + random(-500,500);
+            float pos2 = (width / 2) + random(-500,500);
 
-            sinFlower(halfH, width / 2, f, c); // middle flower
+            sinFlower(halfH, width / 2, f+100, c); // middle flower
 
             
-            if (freq > 8000 && counter < 5)
+            if (freq > 5000 && counter < 5)
             {
                 // calls flowers in random pos.
-                float pos = halfH + random(-500,500);
-                float pos2 = (width / 2) + random(-500,500);
-                
+                pos = halfH + random(-500,500);
+                pos2 = (width / 2) + random(-500,500);
+
+                c = map(i, 0, freq, 0, 255);
+
                 sinFlower(pos, pos2, f, c);
+                if (freq > 7000)
+                {
+                    pos = halfH + random(-500,500);
+                    pos2 = (width / 2) + random(-500,500);
+                    sinFlower(pos, pos2, f, c);
+                }
 
                 // increments flower counter
                 counter++;

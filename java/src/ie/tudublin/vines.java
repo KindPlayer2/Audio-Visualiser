@@ -19,20 +19,6 @@ public class vines extends PApplet
     float smoothedY = 0;
     float smoothedAmplitude = 0;
 
-    public void keyPressed() {
-		if (key >= '0' && key <= '9') {
-			mode = key - '0';
-		}
-		if (keyCode == ' ') {
-            if (ap.isPlaying()) {
-                ap.pause();
-            } else {
-                ap.rewind();
-                ap.play();
-            }
-        }
-	}
-
     public void settings()
     {
         size(1024, 1000, P3D);
@@ -101,21 +87,8 @@ public class vines extends PApplet
         float cx = width / 2;
         float cy = height / 2;
 
-        switch (mode) {
-			case 0:
-                background(0);
-                for(int i = 0 ; i < ab.size() ; i ++)
-                {
-                    //float c = map(ab.get(i), -1, 1, 0, 255);
-                    float c = map(i, 0, ab.size(), 0, 255);
-                    stroke(c, 255, 255);
-                    float f = lerpedBuffer[i] * halfH * 4.0f;
-                    line(halfH + f, i, halfH - f, i);                    
-                }
-                break;
-   
-        case 2:
-            background(0);
+
+        background(0);
             for(int i = 0 ; i < ab.size() ; i ++)
             {
                 /* 
@@ -136,7 +109,7 @@ public class vines extends PApplet
                 
                
             }
-            break;          
+        
         }
 
 
@@ -155,4 +128,4 @@ public class vines extends PApplet
         */
 
     }        
-}
+
