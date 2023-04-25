@@ -35,6 +35,7 @@ public class flower extends PApplet {
 
     public void sinFlower(float h, float w, float e, float c) {
     
+        strokeWeight(0);
         fill(c, 255, 200);
 
         circle(h + 50, w + 10, 75); // works
@@ -42,20 +43,15 @@ public class flower extends PApplet {
         circle(h - 10, w + 50, 75);
         circle(h + 10, w - 50, 75);
 
-        stroke(50, 255, 255);
         fill(50, 255, 255);
         circle(h, w, 50);
-
-        y += random(-10, 10);
-        smoothedY = lerp(smoothedY, y, 0.1f);
-        // circle(200, smoothedY, 50);
 
     }
 
     float lerpedBuffer[] = new float[1024];
 
     public void draw() {
-        // background(0);
+        background(80, 206, 150);
         float halfH = height / 2;
         float average = 0;
         float sum = 0;
@@ -66,15 +62,14 @@ public class flower extends PApplet {
             sum += abs(ab.get(i));
             lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
         }
+
         average = sum / (float) ab.size();
+        smoothedAmplitude = lerp(smoothedAmplitude, average, 0.4f);
 
-        smoothedAmplitude = lerp(smoothedAmplitude, average, 0.1f);
-
-        background(0);
         for (int i = 0; i < ab.size(); i++) {
 
-            //float c = map(ab.get(i), -1, 1, 0, 255);
-            float c = map(i, 0, ab.size(), 0, 255);
+            float c = map(smoothedAmplitude, -1, 1, 0, 255);
+            //float c = map(i, 0, ab.size(), 0, 255);
             float f = lerpedBuffer[i] * halfH * 4.0f;
 
             sinFlower(halfH, width / 2, f, c);
