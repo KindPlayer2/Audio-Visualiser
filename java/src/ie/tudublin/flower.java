@@ -60,7 +60,6 @@ public class flower extends PApplet {
         float average = 0;
         float sum = 0;
 
-
         int highestIndex = 0;
         for(int i = 0 ;i < fft.specSize() / 2 ; i ++)
         {
@@ -86,7 +85,7 @@ public class flower extends PApplet {
             smoothedAmplitude = lerp(smoothedAmplitude, average, 0.5f);
 
             //float freq = fft.indexToFreq((int)(smoothedAmplitude * 100000.0f));
-            float freq = (int)(smoothedAmplitude * 100000.0f);
+            float freq = (int)(smoothedAmplitude * 50000.0f);
 
             System.out.println(freq);
 
@@ -94,7 +93,7 @@ public class flower extends PApplet {
             
             float c = map(i, 0, freq, 0, 255);
             c = map(i, 0, freq, 0, 255);
-            
+
             float f = lerpedBuffer[i] * halfH * 4.0f;
             float pos = halfH + random(-500,500);
             float pos2 = (width / 2) + random(-500,500);
@@ -102,28 +101,30 @@ public class flower extends PApplet {
             sinFlower(halfH, width / 2, f+100, c); // middle flower
 
             
-            if (freq > 5000 && counter < 5)
+            if (freq > 7000 && counter < 10)
             {
-                // calls flowers in random pos.
-                pos = halfH + random(-500,500);
-                pos2 = (width / 2) + random(-500,500);
-
-
-                sinFlower(pos, pos2, f, c);
-                if (freq > 7000)
+                int extra = (int)freq / 1000;
+                for (int j = 0; j < extra; j++)
                 {
                     pos = halfH + random(-500,500);
-                    pos2 = (width / 2) + random(-500,500);
-                    
+                    pos2 = (width / 2) + random(-500,500);  
+
+                    sinFlower(pos, pos2, f, c);
+                    counter++; 
                 }
+            }
+
+            if (freq > 4000 && counter < 4)
+            {
+                // calls flowers in random pos.
+                pos = halfH + random(-300,300);
+                pos2 = (width / 2) + random(-300,300);
 
                 sinFlower(pos, pos2, f, c);
-
                 // increments flower counter
-                counter++;
-                
+                counter++;  
             }
-            
+
         }
     }
 
