@@ -14,16 +14,19 @@ public class StrawberryBush extends PApplet {
     AudioPlayer ap;
     AudioBuffer ab;
     PImage photo;
+    PImage photo2;
+
     Strawberry[] strawberries = new Strawberry[20];
 
     public void settings() {
         size(500, 500);
         photo = loadImage("strawberry.png");
+        photo2 = loadImage("bush.png");
     }
 
     public void setup() {
         minim = new Minim(this);
-        ap = minim.loadFile("The-Beatles-Strawberry-Fields-Forever.mp3", 1024);
+        ap = minim.loadFile("strawberry_fields_forever.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
@@ -37,7 +40,7 @@ public class StrawberryBush extends PApplet {
     }
     
     public void draw() {
-        background(100, 200, 20);
+        background(photo2);
 
         for (int i = 0; i < strawberries.length; i++) {
             Strawberry s = strawberries[i];
