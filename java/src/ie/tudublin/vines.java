@@ -33,9 +33,9 @@ public class vines extends PApplet
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
+        
 
         y = height / 2;
-        
 
         fft = new FFT(width, 1024);
     }
@@ -62,19 +62,10 @@ public class vines extends PApplet
         curveVertex(0, 200); // the first control point
         curveVertex(0, 200); // is also the start point of curve
 
-        curveVertex(x1, y1); 
-        curveVertex(x2, y2);
-        curveVertex(x3, y3);
-        endShape();
-
-        beginShape();
-        for(int i = 0 ;i < x ; i ++)
-        {
-            
-            curveVertex(x1+x, y1+y);
-            curveVertex(x2+x, y2+y);
-
-        }
+        curveVertex(x1+x, y1+y);
+        curveVertex(x2+x, y2+y);
+        curveVertex(x1+x+100, y1+y);
+        curveVertex(x2+x-100, y2-y);
         endShape();
 
         //curveVertex(400+x, 200+y);
@@ -90,6 +81,8 @@ public class vines extends PApplet
         float average = 0;
         float sum = 0;
         int highestIndex = 0;
+
+        background(0,0,50);
 
         for(int i = 0 ;i < fft.specSize() / 2 ; i ++)
         {
@@ -119,7 +112,6 @@ public class vines extends PApplet
         freq = freq / 100;
         System.out.println(freq);
 
-        background(0,0,50);
 
         if (freq > 50)
         {
@@ -134,6 +126,7 @@ public class vines extends PApplet
         }
 
         vine(totalX,totalY); 
+        //line(totalX, totalY, totalX, totalY);
         
         }
     }        

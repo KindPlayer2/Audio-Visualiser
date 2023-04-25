@@ -39,9 +39,9 @@ public class Main
 
     	//Tree();
 		//strawberry();
-		//Flower();
+		Flower();
 		//vines();
-		notes();
+		//notes();
 	}
 	
 	

@@ -65,16 +65,28 @@ public class notes extends PApplet{
         int highestIndex = 0;
         for(int i = 0 ;i < fft.specSize() / 2 ; i ++)
         {
-            line(i * 2.0f, height, i * 2.0f, height - fft.getBand(i) * 5.0f);
+            //line(i * 2.0f, height, i * 2.0f, height - (fft.getBand(i) * 10000) * 5.0f);
 
             if (fft.getBand(i) > fft.getBand(highestIndex))
             {
                 highestIndex = i;
             }
+            
         }
 
         float freq = fft.indexToFreq(highestIndex);
+        
         freq = freq * 10;
+
+        System.out.println(highestIndex);
+
+        for (int i = 0; i > 15; i++){
+            if (ab.get(i) == frequencies[i]){
+                //System.out.println(spellings);
+            }
+
+        }
+
         fill(255);
         textSize(20);
         text("Freq: " + freq, 100, 100);
