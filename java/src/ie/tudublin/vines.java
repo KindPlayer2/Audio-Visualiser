@@ -51,9 +51,10 @@ public class vines extends PApplet
         x1 = 100;
         x2 = 200;
         x3 = 300;
-        y1 = 300;
-        y2 = 100;
-        y3 = 200;
+
+        y1 = 100;
+        y2 = 300;
+        y3 = 100;
 
 
         noFill();
@@ -64,35 +65,25 @@ public class vines extends PApplet
         curveVertex(x1, y1); 
         curveVertex(x2, y2);
         curveVertex(x3, y3);
-
-        for(int i = 0 ;i < 10 ; i ++)
-        {
-            curveVertex(x1+x, y1+y); 
-            curveVertex(x2+x, y2+y);
-            curveVertex(x3+x, y3+y);
-
-            if (y1 > 200 ||y2 > 200||y3 > 200)
-            {
-                curveVertex(x1+x, y1-y); 
-                curveVertex(x2+x, y2-y);
-                curveVertex(x3+x, y3-y);
-
-            }
-        }
-
-
-        //curveVertex(400+x, 200+y);
-        
-
         endShape();
 
+        beginShape();
+        for(int i = 0 ;i < x ; i ++)
+        {
+            
+            curveVertex(x1+x, y1+y);
+            curveVertex(x2+x, y2+y);
+
+        }
+        endShape();
+
+        //curveVertex(400+x, 200+y);
 
     }
 
-    float off = 0;
     float lerpedBuffer[] = new float[1024];
-    float totalX = 100;
-    float totalY = 100;
+    float totalX = 0;
+    float totalY = 0;
 
     public void draw()
     {
