@@ -25,8 +25,8 @@ public class Main
 	{
 		System.out.println("Hello world");
 		Tree();
-		strawberry();
-		spiral();
+		//strawberry();
+		//spiral();
 	}
 	
 	
