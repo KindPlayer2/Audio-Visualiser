@@ -23,7 +23,8 @@ public class tree extends PApplet {
 
     public void setup() {
         minim = new Minim(this);
-        ap = minim.loadFile("The-Beatles-Strawberry-Fields-Forever.mp3", 1024);
+
+        ap = minim.loadFile("strawberry_fields_forever.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
