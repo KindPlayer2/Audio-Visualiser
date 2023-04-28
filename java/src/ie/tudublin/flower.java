@@ -37,9 +37,11 @@ public class flower extends PApplet {
         fft = new FFT(width, 1024);
     }
 
-    public void sinFlower(float h, float w, float e, float c) {
+    public void sinFlower(float h, float w, float c) {
     
         strokeWeight(0);
+
+        fill(20, 255, 220);
 
         fill(c, 255, 220);
 
@@ -51,7 +53,10 @@ public class flower extends PApplet {
         fill(50, 255, 255);
         circle(h, w, 50);
 
+
     }
+
+
 
     float lerpedBuffer[] = new float[1024];
 
@@ -89,24 +94,18 @@ public class flower extends PApplet {
             
             float c = map(i, 0, freq, 0, 255);
 
-            //float f = lerpedBuffer[i] * halfH * 4.0f;
+            float f = lerpedBuffer[i] * halfH * 4.0f;
             //float pos = halfH + random(-500,500);
            // float pos2 = halfW + random(-500,500);
 
 
-            sinFlower(halfH, halfW, 1, c+50); // middle flower
-            sinFlower(height/4, width/4, 1, c+50);
-            sinFlower(height-300, width/3, 1, c+50);
+            sinFlower(halfH, halfW, c+50); // middle flower
+            sinFlower(height/4, width/4, c+50);
+            sinFlower(height-300, width/3, c+50);
 
-            sinFlower(halfH+300, halfW+300, 1, c+50);
-            sinFlower(halfH-350, halfW+50, 1, c+50);
-            sinFlower(height/5, width-200,1, c+50);
-                
-        
-            //
-            
-
-
+            sinFlower(halfH+300, halfW+300, c+50);
+            sinFlower(halfH-350, halfW+50, c+50);
+            sinFlower(height/5, width-200, c+50);
                 
             }
 
