@@ -40,6 +40,7 @@ public class flower extends PApplet {
     public void sinFlower(float h, float w, float e, float c) {
     
         strokeWeight(0);
+
         fill(c, 255, 220);
 
         circle(h + 50, w + 10, 75); // works
@@ -57,6 +58,7 @@ public class flower extends PApplet {
     public void draw() {
         background(80, 190, 150);
         float halfH = height / 2;
+        float halfW = width / 2;
         float average = 0;
         float sum = 0;
 
@@ -71,9 +73,6 @@ public class flower extends PApplet {
             }
         }
 
-        // used to stop too many flowers spawning
-        int counter = 0;
-
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for (int i = 0; i < ab.size(); i++) {
@@ -84,48 +83,33 @@ public class flower extends PApplet {
             average = sum / (float) ab.size();
             smoothedAmplitude = lerp(smoothedAmplitude, average, 0.5f);
 
-            //float freq = fft.indexToFreq((int)(smoothedAmplitude * 100000.0f));
-            float freq = (int)(smoothedAmplitude * 50000.0f);
+            float freq = (int)(average * 50000.0f);
 
             System.out.println(freq);
-
-            //float c = map(smoothedAmplitude, -1, 1, 0, 255);
             
             float c = map(i, 0, freq, 0, 255);
-            c = map(i, 0, freq, 0, 255);
 
-            float f = lerpedBuffer[i] * halfH * 4.0f;
-            float pos = halfH + random(-500,500);
-            float pos2 = (width / 2) + random(-500,500);
+            //float f = lerpedBuffer[i] * halfH * 4.0f;
+            //float pos = halfH + random(-500,500);
+           // float pos2 = halfW + random(-500,500);
 
-            sinFlower(halfH, width / 2, f+100, c); // middle flower
 
+            sinFlower(halfH, halfW, 1, c+50); // middle flower
+            sinFlower(height/4, width/4, 1, c+50);
+            sinFlower(height-300, width/3, 1, c+50);
+
+            sinFlower(halfH+300, halfW+300, 1, c+50);
+            sinFlower(halfH-350, halfW+50, 1, c+50);
+            sinFlower(height/5, width-200,1, c+50);
+                
+        
+            //
             
-            if (freq > 7000 && counter < 10)
-            {
-                int extra = (int)freq / 1000;
-                for (int j = 0; j < extra; j++)
-                {
-                    pos = halfH + random(-500,500);
-                    pos2 = (width / 2) + random(-500,500);  
 
-                    sinFlower(pos, pos2, f, c);
-                    counter++; 
-                }
-            }
 
-            if (freq > 4000 && counter < 4)
-            {
-                // calls flowers in random pos.
-                pos = halfH + random(-300,300);
-                pos2 = (width / 2) + random(-300,300);
-
-                sinFlower(pos, pos2, f, c);
-                // increments flower counter
-                counter++;  
+                
             }
 
         }
     }
 
-}

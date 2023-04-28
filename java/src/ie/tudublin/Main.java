@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+
 public class Main
 {
 	public static void strawberry()
@@ -13,6 +14,7 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new tree());
     }
+	
 
 
 	public static void Flower()
@@ -33,7 +35,7 @@ public class Main
         processing.core.PApplet.runSketch( a, new notes());
     }
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
 		System.out.println("Hello world");
 
