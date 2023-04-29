@@ -42,35 +42,40 @@ public class vines extends PApplet
 
     public void vine(float x, float y) 
     {
-        float x1;
         float y1;
-
-        float x2;
+        float y3;
         float y2;
-
-        x1 = 100;
+        float size1;
+        float size2;
+        
         y1 = 700;
-
-        x2 = 100;
-        y2 = 500;
+        //x2 = x-200;
+        y2 = 650;
+        y3 = y2-70;
+        size1 = 90;
+        size2 = 60;
 
         //stroke(80, 190, 150); // green
 
+        // trunk
         stroke(20, 100, 120);
-        strokeWeight(40);
-        line(x1, y1, x2, y2-y);
-
-
-                
+        strokeWeight(30);
+        line(x, y1, x, y2-y);
+ 
         // leaves
-        strokeWeight(20);
-        stroke(80, 190, 150);
-        triangle(x1, y1, x1+30, y1,x1-1, y1-30);
+        strokeWeight(10);
+        stroke(80, 220, 100);
+        fill(80, 220, 100);
+        triangle(x-size1, y2-y, x+size1, y2-y,x, y2-size1-y);
+        stroke(30, 220, 100);
+        triangle(x-size2, y3-y, x+size2, y3-y,x, y3-size2-y);
+
+        //triangle(x2-size2, y2-y, x2+size2, y2-y,x2, y2-size2-y);
 
     }
 
     float lerpedBuffer[] = new float[1024];
-    float totalX = 0;
+    float totalX = 100;
     float totalY = 0;
 
     public void draw()
@@ -79,7 +84,7 @@ public class vines extends PApplet
         float sum = 0;
         int highestIndex = 0;
 
-        background(0,0,50);
+        background(80,0,50);
 
         for(int i = 0 ;i < fft.specSize() / 2 ; i ++)
         {
@@ -112,18 +117,17 @@ public class vines extends PApplet
 
         if (freq > 50)
         {
-            totalX++;
+            //totalX++;
             totalY++;
         }
 
         if (freq < 20 && totalX>400 && totalY>500)
         {
-            totalX--;
+            //totalX--;
             totalY--;
         }
 
         vine(totalX,totalY); 
-        //line(totalX, totalY, totalX, totalY);
         
         }
     }        

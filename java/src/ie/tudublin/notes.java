@@ -77,13 +77,21 @@ public class notes extends PApplet{
         colorMode(HSB);
         stroke(255);
 
+        float x = 500;
+        float y = 600;
+        float size = 100;
+        float f;
+
         float half = height / 2;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
+            background(0);
             stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
             lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
-            float f = abs(lerpedBuffer[i] * half * 2.0f);
+            f = abs(lerpedBuffer[i] * half * 5.0f);
             //line(i, half + f, i, half - f);
+            bubble(x,(y-f), size);
+            
         }
 
         fft.forward(ab);
@@ -92,7 +100,7 @@ public class notes extends PApplet{
         int highestIndex = 0;
         for(int i = 0 ;i < fft.specSize() / 2 ; i ++)
         {
-            //line(i * 2.0f, height, i * 2.0f, height - (fft.getBand(i) * 10000) * 5.0f);
+            line(i * 2.0f, height, i * 2.0f, height - (fft.getBand(i) * 100) * 0.50f);
 
             if (fft.getBand(i) > fft.getBand(highestIndex))
             {
@@ -102,10 +110,8 @@ public class notes extends PApplet{
         }
 
         float freq = fft.indexToFreq(highestIndex);
-        
         freq = freq * 10;
-
-        System.out.println(highestIndex);
+        //System.out.println(highestIndex);
 
         for (int i = 0; i > 15; i++){
             if (ab.get(i) == frequencies[i]){
@@ -118,10 +124,8 @@ public class notes extends PApplet{
         textSize(20);
         text("Freq: " + freq, 100, 100);
 
-        float x = 500;
-        float y = 400;
-        float size = 100;
-        bubble(x,y, size);
+        
+        //bubble(x,y, size);
 
         //println(map(5, 2, 10, 1000, 2000));
         //println(map1(5, 2, 10, 1000, 2000));
