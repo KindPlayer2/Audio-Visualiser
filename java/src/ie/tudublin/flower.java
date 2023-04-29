@@ -94,7 +94,7 @@ public class flower extends PApplet {
             
             float c = map(i, 0, freq, 0, 255);
 
-            float f = lerpedBuffer[i] * halfH * 4.0f;
+            //float f = lerpedBuffer[i] * halfH * 4.0f;
             //float pos = halfH + random(-500,500);
            // float pos2 = halfW + random(-500,500);
 

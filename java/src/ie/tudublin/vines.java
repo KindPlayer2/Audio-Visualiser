@@ -42,33 +42,30 @@ public class vines extends PApplet
 
     public void vine(float x, float y) 
     {
-        strokeWeight(20);
-        stroke(80, 190, 150);
+        float x1;
+        float y1;
 
-        float x1, x2,x3;
-        float y1,y2,y3;
+        float x2;
+        float y2;
 
         x1 = 100;
-        x2 = 200;
-        x3 = 300;
+        y1 = 700;
 
-        y1 = 100;
-        y2 = 300;
-        y3 = 100;
+        x2 = 100;
+        y2 = 500;
+
+        //stroke(80, 190, 150); // green
+
+        stroke(20, 100, 120);
+        strokeWeight(40);
+        line(x1, y1, x2, y2-y);
 
 
-        noFill();
-        beginShape();
-        curveVertex(0, 200); // the first control point
-        curveVertex(0, 200); // is also the start point of curve
-
-        curveVertex(x1+x, y1+y);
-        curveVertex(x2+x, y2+y);
-        curveVertex(x1+x+100, y1+y);
-        curveVertex(x2+x-100, y2-y);
-        endShape();
-
-        //curveVertex(400+x, 200+y);
+                
+        // leaves
+        strokeWeight(20);
+        stroke(80, 190, 150);
+        triangle(x1, y1, x1+30, y1,x1-1, y1-30);
 
     }
 

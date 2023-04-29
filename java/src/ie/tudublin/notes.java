@@ -43,6 +43,33 @@ public class notes extends PApplet{
         fft = new FFT(width, ab.size());
     }
 
+    
+    public void bubble(float x, float y, float size) 
+    {
+        float x1;
+        float y1;
+
+        float x2;
+        float y2;
+
+        x1 = 100;
+        y1 = 700;
+
+        x2 = 100;
+        y2 = 500;
+                
+        strokeWeight(4);
+        //stroke(130, 200, 200);
+        stroke(130, 60, 255);
+        fill(130, 100, 250);
+        circle(x, y, size);
+        stroke(130, 60, 255);
+        fill(130, 60, 255);
+        circle(x+20, y-20, size/5);
+        circle(x+30, y-5, size/10);
+        
+    }
+
     float lerpedBuffer[] = new float[1024];
     public void draw()
     {
@@ -56,7 +83,7 @@ public class notes extends PApplet{
             stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
             lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
             float f = abs(lerpedBuffer[i] * half * 2.0f);
-            line(i, half + f, i, half - f);
+            //line(i, half + f, i, half - f);
         }
 
         fft.forward(ab);
@@ -90,6 +117,11 @@ public class notes extends PApplet{
         fill(255);
         textSize(20);
         text("Freq: " + freq, 100, 100);
+
+        float x = 500;
+        float y = 400;
+        float size = 100;
+        bubble(x,y, size);
 
         //println(map(5, 2, 10, 1000, 2000));
         //println(map1(5, 2, 10, 1000, 2000));
